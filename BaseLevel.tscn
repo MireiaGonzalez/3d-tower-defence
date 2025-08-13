@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bu4do6gatvb0p"]
+[gd_scene load_steps=7 format=3 uid="uid://bu4do6gatvb0p"]
 
-[ext_resource type="MeshLibrary" uid="uid://cslkxmctddnv" path="res://MeshLibrary/SpaceLibrary.tres" id="1_lvb7b"]
+[ext_resource type="MeshLibrary" uid="uid://cslkxmctddnv" path="res://MeshLibraries/SpaceLibrary.tres" id="1_lvb7b"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_dq0bh"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -15,6 +15,16 @@ sky = SubResource("Sky_lvb7b")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvb7b"]
+albedo_color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[sub_resource type="Curve3D" id="Curve3D_lvb7b"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, -22.7167, 0, 5.85491, -0.606127, 0, 0.95083, 0.606127, 0, -0.95083, 13.926, 0, 5.85491, 0.858684, 0, 0.911672, -0.858684, 0, -0.911672, 13.9797, 0, -1.97794, 0.557943, 0, 0.665645, -0.557943, 0, -0.665645, -10.0017, 0, -2.03159, 0, 0, 0, 0, 0, 0, -10.0017, 0, -5.89437),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0)
+}
+point_count = 5
+
 [node name="BaseLevel" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -27,9 +37,60 @@ shadow_enabled = true
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(100, 2, 100)
+material = SubResource("StandardMaterial3D_lvb7b")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 14.5, 9.5)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_lvb7b")
+cell_size = Vector3(4, 4, 4)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(65535, 65534, 0, 65535, 2, 0, 65531, 65535, 0, 4, 65535, 0, 65531, 65534, 0, 65532, 65534, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 3, 65534, 0, 4, 65534, 0, 2, 65534, 0, 1, 65534, 0, 0, 65534, 0, 65531, 0, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65534, 65534, 0, 65532, 65535, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0)
+}
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_lvb7b")
+
+[node name="Road" type="CSGPolygon3D" parent="Path3D"]
+polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="LeftEdge" type="CSGPolygon3D" parent="Path3D"]
+polygon = PackedVector2Array(-1.1, 0, -1.1, 0.15, -0.9, 0.15, -0.9, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
+
+[node name="LeftEdge2" type="CSGPolygon3D" parent="Path3D"]
+polygon = PackedVector2Array(0.9, 0, 0.9, 0.15, 1.1, 0.15, 1.1, 0)
+mode = 2
+path_node = NodePath("..")
+path_interval_type = 0
+path_interval = 0.5
+path_simplify_angle = 0.0
+path_rotation = 2
+path_rotation_accurate = false
+path_local = false
+path_continuous_u = true
+path_u_distance = 1.0
+path_joined = false
