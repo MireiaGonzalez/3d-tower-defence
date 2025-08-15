@@ -1,4 +1,4 @@
-extends Area3D
+class_name Projectile extends Area3D
 
 @export var speed: float = 30
 
