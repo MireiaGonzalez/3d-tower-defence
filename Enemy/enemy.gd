@@ -4,6 +4,7 @@ class_name Enemy extends PathFollow3D
 @export var max_health: int = 50
 
 @onready var base: Base = get_tree().get_first_node_in_group("base")
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var current_health: int:
 	set(updated_health):
@@ -24,3 +25,4 @@ func _process(delta: float) -> void:
 
 func take_damage(damage: int):
 	current_health -= damage
+	animation_player.play("TakeDamage")

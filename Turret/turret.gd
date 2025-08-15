@@ -4,6 +4,7 @@ class_name Turret extends Node3D
 @export var turret_range: float = 10.0
 
 @onready var turret_top: MeshInstance3D = $TurretBase/TurretTop
+@onready var shoot_animation: AnimationPlayer = $ShootAnimation
 
 var enemy_path: Path3D
 var target: PathFollow3D
@@ -19,6 +20,8 @@ func _on_timer_timeout() -> void:
 		add_child(shot)
 		shot.global_position = turret_top.global_position
 		shot.direction = global_transform.basis.z
+		shoot_animation.play("Fire")
+		
 
 func find_best_target() -> PathFollow3D:
 	var best_target = null
