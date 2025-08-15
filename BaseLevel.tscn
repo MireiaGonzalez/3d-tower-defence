@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu4do6gatvb0p"]
+[gd_scene load_steps=13 format=3 uid="uid://bu4do6gatvb0p"]
 
 [ext_resource type="PackedScene" uid="uid://cqljg717mr2em" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_knq2t"]
 [ext_resource type="MeshLibrary" uid="uid://cslkxmctddnv" path="res://MeshLibraries/SpaceLibrary.tres" id="1_lvb7b"]
 [ext_resource type="PackedScene" uid="uid://cqx0o5lovomkb" path="res://Enemy/enemy.tscn" id="2_5x8ra"]
 [ext_resource type="PackedScene" uid="uid://cxp15nah6flwq" path="res://Base/base.tscn" id="3_o2j4u"]
+[ext_resource type="Script" uid="uid://bmebjqoyvqlej" path="res://enemy_path.gd" id="3_ufkdr"]
 [ext_resource type="Script" uid="uid://jdsp0o717nbn" path="res://turret_manager.gd" id="5_cwwxe"]
 [ext_resource type="PackedScene" uid="uid://c4li4xf6h5jir" path="res://Turret/turret.tscn" id="6_ufkdr"]
 
@@ -57,10 +58,12 @@ data = {
 "cells": PackedInt32Array(65535, 65534, 0, 65535, 2, 0, 65531, 65535, 0, 4, 65535, 0, 65531, 65534, 0, 65532, 65534, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 4, 1, 0, 4, 0, 0, 3, 65534, 0, 4, 65534, 0, 2, 65534, 0, 1, 65534, 0, 0, 65534, 0, 65531, 0, 0, 65531, 2, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65534, 65534, 0, 65532, 65535, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 0, 65535, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 0)
 }
 
-[node name="Path3D" type="Path3D" parent="."]
+[node name="EnemyPath" type="Path3D" parent="."]
 curve = SubResource("Curve3D_lvb7b")
+script = ExtResource("3_ufkdr")
+enemy_scene = ExtResource("2_5x8ra")
 
-[node name="Road" type="CSGPolygon3D" parent="Path3D"]
+[node name="Road" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(-1, 0, -1, 0.1, 1, 0.1, 1, 0)
 mode = 2
 path_node = NodePath("..")
@@ -74,7 +77,7 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[node name="LeftEdge" type="CSGPolygon3D" parent="Path3D"]
+[node name="LeftEdge" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(-1.1, 0, -1.1, 0.15, -0.9, 0.15, -0.9, 0)
 mode = 2
 path_node = NodePath("..")
@@ -88,7 +91,7 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[node name="LeftEdge2" type="CSGPolygon3D" parent="Path3D"]
+[node name="LeftEdge2" type="CSGPolygon3D" parent="EnemyPath"]
 polygon = PackedVector2Array(0.9, 0, 0.9, 0.15, 1.1, 0.15, 1.1, 0)
 mode = 2
 path_node = NodePath("..")
@@ -102,24 +105,9 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[node name="Enemy" parent="Path3D" instance=ExtResource("2_5x8ra")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -22.7167, 0, 5.85491)
-
-[node name="Enemy2" parent="Path3D" instance=ExtResource("2_5x8ra")]
-transform = Transform3D(-0.0222953, 0, -0.999751, 0, 1, 0, 0.999751, 0, -0.0222953, -17.7182, 0, 5.97443)
-progress = 5.0
-
-[node name="Enemy3" parent="Path3D" instance=ExtResource("2_5x8ra")]
-transform = Transform3D(-0.0193063, 0, -0.999814, 0, 1, 0, 0.999814, 0, -0.0193063, -12.7193, 0, 6.07854)
-progress = 10.0
-
-[node name="Enemy4" parent="Path3D" instance=ExtResource("2_5x8ra")]
-transform = Transform3D(-0.0157902, 0, -0.999874, 0, 1, 0, 0.999874, 0, -0.0157902, -7.72, 0, 6.16662)
-progress = 15.0
-
-[node name="Enemy5" parent="Path3D" instance=ExtResource("2_5x8ra")]
-transform = Transform3D(-0.0111026, 0, -0.999938, 0, 1, 0, 0.999938, 0, -0.0111026, -2.72045, 0, 6.23452)
-progress = 20.0
+[node name="Timer" type="Timer" parent="EnemyPath"]
+wait_time = 2.0
+autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_o2j4u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0017, 0, -5.89437)
@@ -127,4 +115,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.0017, 0, -5.89437)
 [node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemy_path")]
 script = ExtResource("5_cwwxe")
 turret = ExtResource("6_ufkdr")
-enemy_path = NodePath("../Path3D")
+enemy_path = NodePath("../EnemyPath")
+
+[connection signal="timeout" from="EnemyPath/Timer" to="EnemyPath" method="spawn_enemy"]
