@@ -24,7 +24,9 @@ func _process(delta: float) -> void:
 	progress += speed * delta
 	if progress_ratio == 1:
 		set_process(false)
+		queue_free()
 		base.take_damage()
+		
 
 func take_damage(damage: int):
 	current_health -= damage
