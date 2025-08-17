@@ -2,15 +2,18 @@ class_name Enemy extends PathFollow3D
 
 @export var speed: float = 2.5
 @export var max_health: int = 50
+@export var gold_for_enemy_killed: int = 15
 
 @onready var base: Base = get_tree().get_first_node_in_group("base")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var bank: Bank = get_tree().get_first_node_in_group("bank")
 
 var current_health: int:
 	set(updated_health):
 		current_health = updated_health
 		if current_health < 1:
 			queue_free()
+			bank.gold += gold_for_enemy_killed
 	get:
 		return current_health
 
