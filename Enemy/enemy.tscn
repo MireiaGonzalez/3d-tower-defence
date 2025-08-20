@@ -125,6 +125,7 @@ bind/17/pose = Transform3D(1.54245e-06, -4.19436, -0.168111, -2.17438e-07, -0.16
 use_model_front = true
 loop = false
 script = ExtResource("1_2pb1h")
+speed = 5.0
 
 [node name="EnemyArea3D" type="Area3D" parent="." groups=["enemy_area"]]
 
@@ -141,26 +142,26 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0)
 
 [node name="Skeleton3D" parent="Barbarian/Armature" index="0"]
-bones/0/position = Vector3(2.60169e-08, -0.362313, 0.391841)
-bones/0/rotation = Quaternion(0.126051, 0.0349798, -0.00444748, 0.991397)
-bones/1/rotation = Quaternion(-0.0868002, 0.0856598, -0.0127341, 0.992455)
-bones/2/rotation = Quaternion(-0.0921341, 0.202414, -0.585923, 0.779253)
-bones/3/rotation = Quaternion(-0.01757, 0.453837, -0.476265, 0.752924)
-bones/4/rotation = Quaternion(0.543566, -0.227324, -0.157597, 0.792479)
-bones/6/rotation = Quaternion(0.0453027, -0.0936436, -0.00294207, 0.99457)
-bones/7/rotation = Quaternion(-0.00165783, -0.0847509, 0.600771, 0.794914)
-bones/8/rotation = Quaternion(0.247027, 0.24122, 0.572156, 0.743927)
-bones/9/rotation = Quaternion(0.518177, -0.1174, 0.265673, 0.804442)
-bones/10/position = Vector3(6.0905e-08, -0.362313, 0.391841)
-bones/10/rotation = Quaternion(0.62889, 0.244896, 0.6704, -0.308363)
-bones/11/rotation = Quaternion(-0.390664, -0.189626, -0.295341, 0.850998)
-bones/12/rotation = Quaternion(-0.0365298, 0.00876927, 0.0633167, 0.997286)
-bones/13/rotation = Quaternion(-0.0211623, -0.0187529, -0.73719, 0.675093)
-bones/14/position = Vector3(4.13437e-08, -0.362313, 0.391841)
-bones/14/rotation = Quaternion(-0.570237, 0.360833, 0.599013, 0.431061)
-bones/15/rotation = Quaternion(-0.526604, -0.061294, -0.0574045, 0.845953)
-bones/16/rotation = Quaternion(-0.115172, 0.016058, -0.650059, 0.750933)
-bones/17/rotation = Quaternion(-0.0111497, 0.0436428, 0.632488, 0.77326)
+bones/0/position = Vector3(4.08817e-09, 0.0895949, 0.391841)
+bones/0/rotation = Quaternion(0.126127, 0.00567125, -0.000721041, 0.991998)
+bones/1/rotation = Quaternion(-0.0870557, 0.0401673, -0.00597125, 0.995376)
+bones/2/rotation = Quaternion(-0.0496099, 0.147344, -0.594593, 0.788852)
+bones/3/rotation = Quaternion(0.0369546, 0.330262, -0.51929, 0.787337)
+bones/4/rotation = Quaternion(0.438073, -0.303272, -0.20929, 0.819949)
+bones/6/rotation = Quaternion(0.0657885, -0.0164111, -0.00490833, 0.997687)
+bones/7/rotation = Quaternion(-0.0266207, -0.117401, 0.598027, 0.792384)
+bones/8/rotation = Quaternion(0.160924, -0.0145033, 0.575927, 0.801374)
+bones/9/rotation = Quaternion(0.477435, -0.0896884, -0.0553575, 0.872323)
+bones/10/position = Vector3(-9.54794e-09, 0.0895949, 0.391841)
+bones/10/rotation = Quaternion(0.627686, 0.248126, 0.668842, -0.3116)
+bones/11/rotation = Quaternion(-0.343085, -0.308924, -0.489818, 0.739552)
+bones/12/rotation = Quaternion(-0.0183576, 0.048142, 0.478109, 0.876788)
+bones/13/rotation = Quaternion(-0.0269649, -0.0222622, -0.732301, 0.680083)
+bones/14/position = Vector3(-2.43228e-08, 0.0895949, 0.391841)
+bones/14/rotation = Quaternion(-0.575301, 0.352965, 0.604858, 0.422601)
+bones/15/rotation = Quaternion(-0.496998, -0.0185794, -0.0187105, 0.867351)
+bones/16/rotation = Quaternion(-0.0353651, -0.0338071, -0.46576, 0.883558)
+bones/17/rotation = Quaternion(-0.0292718, 0.0178689, 0.504855, 0.862523)
 
 [node name="Highlight" type="MeshInstance3D" parent="Barbarian/Armature/Skeleton3D/Barbarian_M_02" index="0"]
 visible = false

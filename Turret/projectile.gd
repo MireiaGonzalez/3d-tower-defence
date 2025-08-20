@@ -1,6 +1,7 @@
 class_name Projectile extends Area3D
 
 @export var speed: float = 30
+@export var damage: int = 25
 
 var direction: Vector3 = Vector3.FORWARD
 
@@ -13,5 +14,5 @@ func _on_timer_timeout() -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area.is_in_group("enemy_area"):
 		var enemy = area.get_parent() as Enemy
-		enemy.take_damage(15)
+		enemy.take_damage(damage)
 		queue_free()
